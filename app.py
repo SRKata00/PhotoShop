@@ -23,10 +23,17 @@ else:
 
 
 @app.route('/', methods=['GET'])
-def index():       
+def index():
 
-    return "Megy"
+    restaurants_annotated = []       
 
+    return render_template('index.html', restaurants=restaurants_annotated)
+
+
+@app.route('/upload', methods=['GET'])
+def upload():
+    imagefile = request.files.get('myfile', '')
+    return render_template('index.html')
 
 @app.route('/favicon.ico')
 def favicon():

@@ -1,27 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Restaurant List{% endblock %}
 {% block content %}
-      <h1>Restaurants</h1>
+      <h1>Welcome on My PhotoShop</h1>
 
       {% if True %}
-          <table class="table">
-              <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Rating</th>
-                      <th class="text-end">Details</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {% for restaurant in restaurants %}
-                      <tr>
-                          <td>{{ restaurant.name }}</td>
-                          <td>{% include "star_rating.html" %}</td>
-                          <td class="text-end"><a href="{{ url_for('details', id=restaurant.id) }}" class="btn btn-sm btn-primary">Details</a></td>
-                      </tr>
-                  {% endfor %}
-              </tbody>
-          </table>
+          <form action="classify_upload" method="post" id="upload-form">
+              <label for="myfile">Select a file:</label>
+              <input type="file" id="myfile" name="myfile"><br><br>
+              <input type="submit" />
+          </form>
       {% else %}
           <p>No restaurants exist.  Select Add new restaurant to add one.</p>
       {% endif %}

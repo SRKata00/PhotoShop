@@ -3,4 +3,3 @@ Flask-WTF
 pymongo
 gunicorn
 requests
-opencv-python
