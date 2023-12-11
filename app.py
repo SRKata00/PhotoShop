@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, make_response, url_for, send_from_directory
 from flask_wtf.csrf import CSRFProtect
 from datetime import datetime
 import numpy as np
@@ -36,7 +36,9 @@ def upload():
     imagefile = request.files.get('myfile', '').read()
     img = cv2.imdecode(np.fromstring(imagefile, np.uint8), cv2.IMREAD_COLOR)
     #print(img)
-    return imagefile
+    retval, buffer = cv2.imencode('.png', img)
+    response = make_response(buffer.tobytes())
+    return response
 
 @app.route('/favicon.ico')
 def favicon():
