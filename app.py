@@ -33,6 +33,7 @@ def index():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     imagefile = request.files.get('myfile', '')
+    print(imagefile)
     return render_template('index.html')
 
 @app.route('/favicon.ico')
