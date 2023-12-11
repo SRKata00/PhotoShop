@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from flask_wtf.csrf import CSRFProtect
 from datetime import datetime
-from bson import ObjectId
+import numpy as np
 import os
-import uuid
+import cv2
 
 from azureproject import mongodb
 from requests import RequestException
@@ -34,7 +34,8 @@ def index():
 @csrf.exempt
 def upload():
     imagefile = request.files.get('myfile', '')
-    print(imagefile)
+    img = cv2.imdecode(np.fromstring(imagefile, np.uint8), cv2.IMREAD_COLOR)
+    print(img)
     return render_template('index.html')
 
 @app.route('/favicon.ico')
