@@ -34,7 +34,7 @@ def index():
 @csrf.exempt
 def upload():
     imagefile = request.files.get('myfile', '')
-    img = cv2.imdecode(np.fromstring(imagefile, np.uint8), cv2.IMREAD_COLOR)
+    #img = cv2.imdecode(np.fromstring(imagefile, np.uint8), cv2.IMREAD_COLOR)
     #print(img)
     return imagefile
 
