@@ -1,12 +1,9 @@
 from flask import Flask, render_template, request, make_response, url_for, send_from_directory
 from flask_wtf.csrf import CSRFProtect
-from datetime import datetime
 import numpy as np
 import os
 import cv2
 
-from azureproject import mongodb
-from requests import RequestException
 
 app = Flask(__name__, static_folder='static')
 csrf = CSRFProtect(app)
@@ -23,9 +20,7 @@ else:
 
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
-
-    restaurants_annotated = []       
+def index():  
 
     return render_template('index.html')
 
@@ -37,8 +32,10 @@ def upload():
     img = cv2.imdecode(np.fromstring(imagefile, np.uint8), cv2.IMREAD_COLOR)
     if request.form.get('select') == "grayscale" :
         img = toGray(img)
-    else:
+    elif request.form.get('select') == "vmirror" :
         img = cv2.flip(img, 0)
+    elif request.form.get('select') == "hmirror" :
+        img = cv2.flip(img, 1)
     retval, buffer = cv2.imencode('.png', img)
     response = make_response(buffer.tobytes())
     response.headers['Content-Type'] = 'image/png'

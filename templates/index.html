@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Restaurant List{% endblock %}
+{% block title %}Photo Shop{% endblock %}
 {% block content %}
       <h1>Welcome on My PhotoShop</h1>
 
@@ -10,10 +10,11 @@
               <select name="select">
                   <option value="grayscale">Gray Scale</option>
                   <option value="vmirror">Vertical mirroring</option>
+                  <option value="hmirror">Horizontalal mirroring</option>
               </select>
               <input type="submit" />
           </form>
       {% else %}
-          <p>No restaurants exist.  Select Add new restaurant to add one.</p>
+          <p>No photo exist. Code unreachable.</p>
       {% endif %}
 {% endblock %}
