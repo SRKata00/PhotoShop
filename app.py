@@ -33,7 +33,7 @@ def index():
 @app.route('/upload', methods=['GET', 'POST'])
 @csrf.exempt
 def upload():
-    imagefile = request.files.get('myfile', '')
+    imagefile = request.files.get('myfile', '').read()
     img = cv2.imdecode(np.fromstring(imagefile, np.uint8), cv2.IMREAD_COLOR)
     #print(img)
     return imagefile
