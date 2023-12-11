@@ -27,7 +27,7 @@ def index():
 
     restaurants_annotated = []       
 
-    return render_template('index.html', restaurants=restaurants_annotated)
+    return render_template('index.html')
 
 
 @app.route('/upload', methods=['GET'])
