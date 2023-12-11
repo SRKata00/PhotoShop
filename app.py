@@ -38,6 +38,7 @@ def upload():
     #print(img)
     retval, buffer = cv2.imencode('.png', img)
     response = make_response(buffer.tobytes())
+    response.headers['Content-Type'] = 'image/png'
     return response
 
 @app.route('/favicon.ico')
