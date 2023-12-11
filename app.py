@@ -35,16 +35,18 @@ def index():
 def upload():
     imagefile = request.files.get('myfile', '').read()
     img = cv2.imdecode(np.fromstring(imagefile, np.uint8), cv2.IMREAD_COLOR)
-    #print(img)
+    if request.form.get('select') == "grayscale" :
+        img = toGray(img)
+    else:
+        img = cv2.flip(img, 0)
     retval, buffer = cv2.imencode('.png', img)
     response = make_response(buffer.tobytes())
     response.headers['Content-Type'] = 'image/png'
     return response
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+def toGray(image):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    return gray
 
 if __name__ == '__main__':
    app.run()
