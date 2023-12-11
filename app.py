@@ -31,6 +31,7 @@ def index():
 
 
 @app.route('/upload', methods=['GET', 'POST'])
+@csrf.exempt
 def upload():
     imagefile = request.files.get('myfile', '')
     print(imagefile)
