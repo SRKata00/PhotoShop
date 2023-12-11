@@ -36,7 +36,7 @@ def upload():
     imagefile = request.files.get('myfile', '')
     img = cv2.imdecode(np.fromstring(imagefile, np.uint8), cv2.IMREAD_COLOR)
     #print(img)
-    return render_template('index.html')
+    return imagefile
 
 @app.route('/favicon.ico')
 def favicon():
