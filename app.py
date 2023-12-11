@@ -22,7 +22,7 @@ else:
    app.config.from_object('azureproject.production')
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
 
     restaurants_annotated = []       
@@ -30,7 +30,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/upload', methods=['GET'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
     imagefile = request.files.get('myfile', '')
     return render_template('index.html')
